@@ -1,49 +1,125 @@
-<canvas id="fireworks"></canvas>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Maryam</title>
 
-<script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.10.7/dist/index.umd.js"></script>
+<style>
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4,#a18cd1);
+  color:white;
+}
+
+.container{
+  z-index:2;
+}
+
+h1{
+  font-size:45px;
+  text-shadow:0 0 15px white;
+  animation:pulse 2s infinite;
+}
+
+h2{
+  font-size:25px;
+}
+
+button{
+  padding:15px 30px;
+  border:none;
+  border-radius:30px;
+  font-size:18px;
+  cursor:pointer;
+  background:white;
+  color:#ff6b81;
+}
+
+.heart{
+ position:absolute;
+ bottom:-20px;
+ font-size:30px;
+ animation:up 6s linear infinite;
+}
+
+@keyframes up{
+ from{
+  transform:translateY(0);
+  opacity:1;
+ }
+ to{
+  transform:translateY(-110vh);
+  opacity:0;
+ }
+}
+
+@keyframes pulse{
+ 50%{
+  transform:scale(1.1);
+ }
+}
+
+.fire{
+ position:absolute;
+ font-size:35px;
+ animation:fall 3s linear infinite;
+}
+
+@keyframes fall{
+ from{top:-50px;}
+ to{top:100vh;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>🎂 Happy Birthday Maryam 🎂</h1>
+<h2>✨ Born in 2009 ✨</h2>
+<p>Wishing you a wonderful birthday full of happiness and beautiful moments 🎉</p>
+<button onclick="celebrate()">🎁 Celebrate</button>
+</div>
+
 
 <script>
-const container = document.getElementById('fireworks');
-const fireworks = new Fireworks.default(container,{
-  autoresize:true,
-  opacity:0.5,
-  acceleration:1.05,
-  friction:0.97,
-  gravity:1.2,
-  particles:120,
-  explosion:8
-});
-fireworks.start();
-</script>
 
-<script>
+function celebrate(){
+ alert("🎉 Happy Birthday Maryam! 🎉");
+}
+
 setInterval(()=>{
-    let heart=document.createElement("div");
-    heart.innerHTML="❤️";
-    heart.style.position="fixed";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.top="100vh";
-    heart.style.fontSize=(20+Math.random()*30)+"px";
-    heart.style.animation="floatUp 6s linear forwards";
-    document.body.appendChild(heart);
+ let h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="❤️";
+ h.style.left=Math.random()*100+"%";
+ h.style.animationDuration=(3+Math.random()*4)+"s";
+ document.body.appendChild(h);
 
-    setTimeout(()=>heart.remove(),6000);
+ setTimeout(()=>h.remove(),6000);
 },300);
 
-const style=document.createElement("style");
-style.innerHTML=`
-@keyframes floatUp{
-0%{transform:translateY(0);opacity:1;}
-100%{transform:translateY(-120vh);opacity:0;}
-}
-#fireworks{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-z-index:999;
-}`;
-document.head.appendChild(style);
-</script># birthday-surprise
+
+setInterval(()=>{
+ let f=document.createElement("div");
+ f.className="fire";
+ f.innerHTML="🎆";
+ f.style.left=Math.random()*100+"%";
+ f.style.animationDuration=(2+Math.random()*3)+"s";
+ document.body.appendChild(f);
+
+ setTimeout(()=>f.remove(),5000);
+},500);
+
+</script>
+
+</body>
+</html>
